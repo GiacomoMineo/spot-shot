@@ -1,6 +1,7 @@
 {
   "name": "spotshot",
   "version": "0.0.0",
+  "description": "Application for location communication",
   "main": "server.js",
   "author": "GiacomoMineo",
   "repository": {
