@@ -5,11 +5,11 @@ Application for location communication
 
 The platforms that support our app:
 
-* AngularJS application
-* FireBase keeps our messages
-* Facebook lets us browse user contacts
-* Phonegap to build the Android application
+* [AngularJS](http://angularjs.org/)
+* [FireBase](https://www.firebase.com/) keeps our messages
+* [Facebook](https://developers.facebook.com/) lets us browse user contacts
+* [Phonegap](http://phonegap.com/) to build the Android application
 
 ---------
-The app is also built for the [web](http://spot-shot-app.herokuapp.com), with very few code differences.
+The application [website](http://spot-shot-app.herokuapp.com) runs on [Node.js](http://nodejs.org/) and implements very few code differences from the mobile native apps.
 

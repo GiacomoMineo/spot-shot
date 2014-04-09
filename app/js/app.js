@@ -40,7 +40,7 @@ angular.module('spotshotApp', [
 var app = angular.module('spotshotApp');
 
 // Firebase Tell Me Where URI
-app.constant('FIREBASE_URI', 'https://sizzling-fire-2605.firebaseio.com/spotshot');
+app.constant('FIREBASE_URI', 'https://blinding-fire-9444.firebaseio.com/spotshot');
 
 // Connection detection and event listener
 app.run(function($window, $rootScope) {
