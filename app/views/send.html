@@ -1,0 +1,57 @@
+<div class="section-send">
+	<div class="topcoat-navigation-bar title">
+	  <div class="topcoat-navigation-bar__item full">
+	   	<div class="recipients" ng-show="group" ng-click="toggleRecipients()"></div>
+	    <h1 class="topcoat-navigation-bar__title">{{name}}</h1>
+	  </div>
+	</div>
+	<div class="group-tab">
+    <ul>
+      <li ng-repeat="friend in friends track by $index">
+        <img ng-src="{{friend.picture.data.url}}" />
+        <span>{{friend.name}}</span>
+      </li>
+    </ul>
+  </div>
+	<div class="placeholder"></div>
+	<a href="#/friends" class="contacts"></a>
+	<h1>{{locale.Header}}</h1>
+	<div id="location-spinner"></div>
+	<div id="refresh" ng-show="here" ng-click="refreshLocation()"></div>
+	<div class="address-text">
+		<p>{{location.address}}</p>
+		<p>{{placeName}}</p>
+	</div>
+	<textarea ng-model="message" value="" class="topcoat-textarea text-input" rows="2" cols="26" placeholder="{{locale.Textarea}}"></textarea>
+
+	<div class="btn-row">
+		<div class="public-switch" data-public="{{locale.Public}}" data-private="{{locale.Private}}">
+      <input type="checkbox" ng-model="publicPost" value="1" id="public" name="">
+      <label for="public"></label>
+      <div></div>
+    </div><button id="upload" ng-click="takePicture()" class="topcoat-button--large picture-btn">
+			<span>{{locale.TakePicture}}</span>
+			<div class="spinner-upload">
+			  <div class="rect1"></div>
+			  <div class="rect2"></div>
+			  <div class="rect3"></div>
+			  <div class="rect4"></div>
+			  <div class="rect5"></div>
+			  <div class="rect6"></div>
+			</div>
+		</button>
+	</div>
+
+	<div class="send-block">
+
+		<button ng-show="appSend" ng-class="{picture: picture}" id="send" class="topcoat-button--large--cta send" ng-click="sendAppMessage()">
+			<span>{{locale.Button}}</span>
+		</button><button ng-class="{picture: picture, appSend: appSend}" id="sendFb" class="topcoat-button--large--cta send" ng-click="sendFbMessage()">
+			<span>{{locale.ButtonFB}}</span>
+		</button>
+		<button id="picture-add" ng-show="picture" ng-click="togglePicture()" class="topcoat-button--large--cta"></button>
+		<div class="picture-frame">
+			<div class="frame"><img ng-src="{{picture}}"></div>
+		</div>
+	</div>
+</div>

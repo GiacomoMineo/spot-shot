@@ -1,0 +1,35 @@
+<div class="section-map">
+	<div class="topcoat-navigation-bar title">
+	    <div class="topcoat-navigation-bar__item full">
+	    	<div class="recipients" ng-show="group" ng-click="toggleRecipients()"></div>
+	      <h1 class="topcoat-navigation-bar__title">{{name}}</h1>
+	    </div>
+	</div>
+	<div class="group-tab">
+    <ul>
+      <li ng-repeat="friend in friends track by $index">
+        <img ng-src="{{friend.picture.data.url}}" />
+        <span>{{friend.name}}</span>
+      </li>
+    </ul>
+  </div>
+	<a href="#/friends" class="contacts"></a>
+	<div class="placeholder"></div>
+	<span class="filter-clear">
+    <input id="place-input" class="controls" type="text" placeholder="{{locale.SearchInput}}">
+    <span class="icon-clear"></span>
+  </span>
+	<div id="location-spinner"></div>
+	<div id="refresh" ng-click="reloadMap()"></div>
+	<p class="error">{{error}}</p>
+	<div class="map-wrapper">
+		<div class="places" ng-class="{show: placesList}">
+			<ul ng-repeat="place in places">
+				<li ng-click="selectPlace(place)"><p class="name">{{place.name}}</p>
+					<p class="address">{{place.formatted_address}}</p></li>
+			</ul>
+		</div>
+		<div id="map-canvas"></div>
+	</div>
+	<button id="confirm" class="topcoat-button--large--cta confirm" ng-click="goSend()">{{locale.Button}}</button>
+</div>

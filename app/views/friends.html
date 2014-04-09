@@ -1,0 +1,58 @@
+<div class="section-friends">
+	<div class="topcoat-navigation-bar title" ng-class="{'open': searchOpen}">
+		<div class="topcoat-navigation-bar__item full">
+			<div class="search">
+				<div class="toggle" ng-click="toggleSearch()"></div>
+				<input ng-model="query" placeholder="{{locale.SearchBox}}" id="friend-search">
+			</div>
+			<a class="message message-spinner" href="#/message/{{userId}}"><div></div></a>
+			<h1 class="topcoat-navigation-bar__title">{{locale.MainTitle}}</h1>
+		</div>
+	</div>
+	<div class="offline" ng-hide="online">{{locale.Offline}}</div>
+	<div class="placeholder"></div>
+	<div ng-show="online" class="topcoat-list">
+		<h3 ng-show="groups.length > 0" class="topcoat-list__header">{{locale.GroupsHeader}}</h3>
+		<ul class="topcoat-list__container groups-list" ng-show="groups.length > 0">
+			<li class="topcoat-list__item" ng-repeat="group in groups">
+				<a href="#/menu/{{group.id}},{{group.name}},true">
+					<img ng-src="{{group.friends[0].picture.data.url}}" />
+					<img ng-show="group.friends[1].picture.data.url" ng-src="{{group.friends[1].picture.data.url}}" />
+					<img ng-show="group.friends[2].picture.data.url" ng-src="{{group.friends[2].picture.data.url}}" />
+					<span class="more" ng-show="group.friends.length > 3">...</span>
+					<span>{{group.name}}</span>
+				</a>
+				<a class="modify-group" href="#/group/{{group.id}}"></a>
+			</li>
+		</ul>
+	</div>
+	<div ng-show="online" class="topcoat-list">
+		<h3 class="topcoat-list__header">{{locale.FriendsHeader}}</h3>
+		<div id="friend-spinner" class="spinner"></div>
+		<ul class="topcoat-list__container friends-list">
+			<li class="topcoat-list__item" ng-repeat="friend in friends | filter:query | orderBy:orderProp">
+				<a href="#/menu/{{friend.id}},{{friend.name}},false">
+					<img ng-src="{{friend.picture.data.url}}" />
+					<span>{{friend.name}}</span>
+				</a>
+				<span class="select-friend" ng-click="selectFriend(friend, $event)"></span>
+			</li>
+		</ul>
+	</div>
+	<div class="text-alert"></div>
+	<div class="new-group-tab"><input type="text" ng-model="group"><div class="create-group" ng-click="createGroup()"></div></div>
+	<div class="add-group-tab">
+		<ul class="topcoat-list__container">
+			<li class="topcoat-list__item" ng-click="addToGroup(group.id)" ng-repeat="group in groups">
+				<span>{{group.name}}</span>
+			</li>
+		</ul>
+	</div>
+	<div ng-show="selectedFriends.length > 0" class="group-buttons">
+		<div class="reset-selection" ng-click="resetSelection()"></div>
+		<div class="group-size"><span>{{selectedFriends.length}}</span></div>
+		<div ng-show="selectedFriends.length > 1" class="group-btn group-new" ng-click="newGroup()"></div>
+		<div ng-show="groups.length > 0" class="group-btn group-add" ng-click="addGroup()"></div>
+		<div ng-show="selectedFriends.length > 1" class="group-btn group-multiple-send" ng-click="multipleSend()"></div>
+	</div>
+</div>

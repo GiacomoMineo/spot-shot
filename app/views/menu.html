@@ -1,0 +1,20 @@
+<div class="section-menu">
+  <div class="topcoat-navigation-bar title">
+    <div class="topcoat-navigation-bar__item full">
+      <div class="recipients" ng-show="group" ng-click="toggleRecipients()"></div>
+      <h1 class="topcoat-navigation-bar__title">{{name}}</h1>
+    </div>
+  </div>
+  <div class="group-tab">
+    <ul>
+      <li ng-repeat="friend in friends track by $index">
+        <img ng-src="{{friend.picture.data.url}}" />
+        <span>{{friend.name}}</span>
+      </li>
+    </ul>
+  </div>
+  <a href="#/friends" class="contacts"></a>
+  <div class="placeholder"></div>
+  <a class="send-here" href="#/send/{{id}},{{name}},{{group}}/{{lat}},{{lng}}/default"><span>{{locale.ButtonHere}}</span></a
+    ><a class="send-there" href="#/map/{{id}},{{name}},{{group}}"><span>{{locale.ButtonThere}}</span></a>
+</div>

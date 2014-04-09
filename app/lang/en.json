@@ -1,0 +1,54 @@
+{
+	"login": {
+		"Button": "Log In with Facebook"
+	},
+    "friends": {
+        "MainTitle": "SpotShot",
+        "GroupsHeader": "Groups",
+        "FriendsHeader": "Friends",
+        "SearchBox": "Search",
+        "Offline": "No active connection found.",
+        "MultipleSend": "Multiple Send",
+        "ErrorNameShort": "Group name too short",
+        "GroupCreated": "Group created!",
+        "FriendsAdded": "Friends added to ",
+        "WelcomeTitle": "Welcome to SpotShot!",
+        "WelcomeMessage": "This is the message section, enjoy!"
+    },
+    "menu": {
+        "ButtonHere": "Here",
+        "ButtonThere": "Map"
+    },
+    "send": {
+    	"Header": "Meet me here",
+    	"Textarea": "Message",
+    	"GeocoderError": "Geolocation failed due to: ",
+    	"Button": "Send",
+        "ButtonFB": "Facebook",
+    	"ButtonSending": "Sending..",
+    	"ButtonError": "Error!",
+    	"ButtonSent": "Sent!",
+    	"MessageHere": "I'm here: ",
+    	"MessageThere": "Meet me here: ",
+        "MapMessage": "Map",
+        "Public": "Public",
+        "Private": "Private",
+        "TakePicture": "Take Picture",
+        "PictureTitle": "Photo",
+        "PictureUploading": "Uploading photo...",
+        "PictureUploaded": "Photo Uploaded!",
+        "PictureError": "Error uploading"
+    },
+    "map": {
+    	"Button": "Confirm",
+        "SearchInput": "Search Place"
+    },
+    "group": {
+        "GroupsHeader": "Group Members",
+        "Delete": "Delete Group"
+    },
+    "message": {
+        "Title": "Messages",
+        "Map": "Map"
+    }
+}

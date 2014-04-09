@@ -1,0 +1,33 @@
+<div class="section-message">
+	<div class="topcoat-navigation-bar title">
+		<div class="topcoat-navigation-bar__item full">
+			<h1 class="topcoat-navigation-bar__title">{{locale.Title}}</h1>
+		</div>
+	</div>
+	<a href="#/friends" class="contacts"></a>
+	<div class="placeholder"></div>
+	<div class="message-wrapper">
+		<div id="{{id}}" class="chats" ng-repeat="(id, chat) in chats">
+			<div ng-click="toggleChat(id, false)" class="user-wrapper">
+				<div class="user">
+					<span class="user-name">{{chat.user.name}}</span>
+					<img ng-src="{{chat.user.picture}}">
+					<a class="send" href="#/menu/{{id}},{{chat.user.name}},false"></a>
+				</div>
+			</div><ul ng-click="toggleChat(id, true)" class="messages">
+				<li ng-repeat="(msg_id, message) in chat.messages | orderDate:true">
+					<div class="preview">
+						<p>{{message.body.location}} {{message.body.address}}</p>
+						<span class="time">{{message.body.time}}</span>
+					</div>
+					<div class="content">
+						<p>{{message.body.content}}</p>
+						<div ng-click="togglePicture($event)" class="img-overlay"><img ng-src="{{message.body.picture}}"></div>
+						<a href="{{message.body.map}}">{{message.body.map}}</a>
+						<span class="remove" ng-click="removeMessage(id, msg_id)"></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

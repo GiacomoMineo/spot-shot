@@ -1,0 +1,55 @@
+{
+	"login": {
+		"Button": "Accedi con Facebook"
+	},
+    "friends": {
+        "MainTitle": "SpotShot",
+        "GroupsHeader": "Gruppi",
+        "FriendsHeader": "Amici",
+        "SearchBox": "Cerca",
+        "Offline": "Nessuna connessione attiva trovata.",
+        "MultipleSend": "Invio Multiplo",
+        "ErrorNameShort": "Nome gruppo troppo corto",
+        "GroupCreated": "Gruppo creato!",
+        "FriendsAdded": "Amici aggiunti a ",
+        "WelcomeTitle": "Benvenuto su SpotShot!",
+        "WelcomeMessage": "Questa è la sezione messaggi, enjoy!"
+    },
+    "menu": {
+        "ButtonHere": "Qui",
+        "ButtonThere": "Mappa"
+    },
+    "send": {
+    	"Header": "Incontriamoci qui",
+    	"Textarea": "Messaggio",
+    	"GeocoderError": "Localizzazione fallita per: ",
+    	"Button": "Invia",
+        "ButtonFB": "Facebook",
+    	"ButtonSending": "Invio in corso..",
+    	"ButtonError": "Errore!",
+    	"ButtonSent": "Inviato!",
+    	"MessageHere": "Sono qui: ",
+    	"MessageThere": "Vediamoci qui: ",
+        "MapMessage": "Mappa",
+        "Public": "Pubblico",
+        "Private": "Privato",
+        "TakePicture": "Scatta Foto",
+        "PictureTitle": "Foto",
+        "PictureUploading": "Caricamento foto...",
+        "PictureUploaded": "Foto caricata!",
+        "PictureError": "Errore caricamento"
+    },
+    "map": {
+    	"Header": "Dove ti vuoi incontrare?",
+    	"Button": "Conferma",
+        "SearchInput": "Cerca Luogo"
+    },
+    "group": {
+        "GroupsHeader": "Membri Gruppo",
+        "Delete": "Elimina Gruppo"
+    },
+    "message": {
+        "Title": "Messaggi",
+        "Map": "Mappa"
+    }
+}

@@ -1,0 +1,25 @@
+<div class="section-group">
+	<div class="topcoat-navigation-bar title">
+		<div class="topcoat-navigation-bar__item full">
+			<h1 class="topcoat-navigation-bar__title">{{selectedGroup.name}}</h1>
+		</div>
+	</div>
+	<a href="#/friends" class="contacts"></a>
+	<div class="placeholder"></div>
+	<div class="remove-group">
+		<span ng-click="confirm()">{{locale.Delete}}</span>
+		<div class="confirmation">
+			<span ng-click="removeGroup(selectedGroup.id)" class="yes"></span><span ng-click="confirm()" class="no"></span>
+		</div>
+	</div>
+	<div class="topcoat-list">
+		<h3 class="topcoat-list__header">{{locale.GroupsHeader}}</h3>
+		<ul class="topcoat-list__container">
+			<li class="topcoat-list__item" ng-repeat="friend in selectedGroup.friends track by $index">
+				<img ng-src="{{friend.picture.data.url}}" />
+				<span>{{friend.name}}</span>
+				<span class="remove-friend" ng-click="removeFriend(friend.id)"></span>
+			</li>
+		</ul>
+	</div>
+</div>

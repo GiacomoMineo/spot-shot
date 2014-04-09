@@ -1,0 +1,25 @@
+/**
+ * Login Page
+ * 
+ * Sections:
+ * 1) Top bar
+ * 2) Login button
+ */
+
+.section-login {
+	/* 1) Top bar --- */
+	> h1 {
+		text-align: center;
+	}
+	/* 2) Login button --- */
+	.login {
+		position: absolute;
+		display: block;
+		top: 45%; left: 0; right: 0;
+		width: 90%;
+		margin: 0 auto;
+		color: #fff;
+		cursor: pointer;
+		background-color: rgb(76, 102, 164);
+	}
+}

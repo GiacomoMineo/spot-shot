@@ -1,0 +1,54 @@
+/**
+ * Menu Page
+ * 
+ * Sections:
+ * 1) Buttons
+ */
+
+.section-menu {
+	height: 100%;
+	color: #fff;
+	position: relative;
+	height: 100%;
+	.title {
+		padding: 0;
+		h1 {
+			padding-left: 16px;
+		}
+	}
+	/* 1) Buttons --- */
+	.send-here {
+		background: url('../img/here.png') center 90% no-repeat;
+		background-color: $color;
+	}
+	.send-there {
+		background: url('../img/there.png') center 90% no-repeat;
+		background-color: $color-second;
+	}
+	.send-there, .send-here {
+		font-family: 'Montserrat', sans-serif;
+		position: relative;
+		vertical-align: text-top;
+		display: inline-block;
+		cursor: pointer;
+		text-align: center;
+		@include breakpoint(landscape) {
+			width: 50%;
+			height: 90%;
+		}
+		height: 45%;
+		width: 100%;
+		> span {
+			position: absolute;
+			top: 10%;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			font-size: 63px;
+			line-height: 63px;
+			text-transform: uppercase;
+			color: #fff;
+			overflow: hidden;
+		}
+	}
+}

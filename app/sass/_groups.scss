@@ -1,0 +1,92 @@
+/**
+ * Groups Page
+ * 
+ * Sections:
+ * 1) Remove button and sub-buttons
+ * 2) Friend list with remove buttons
+ */
+
+.section-group {
+	height: 100%;
+	/* 1) Remove button and sub-buttons --- */
+	.remove-group {
+		position: relative;
+		background: url('../img/reset.png') 90% center no-repeat;
+		background-color: rgba(255,0,0,.3);
+		margin: 1% auto;
+		width: 90%;
+		border: 1px solid rgba(255,255,255,.1);
+		border-radius: 6px;
+		> span {
+			display: block;
+			padding: 16px 5%;
+			font-size: 21px;
+			font-weight: 300;
+			color: #fff;
+		}
+		.confirmation {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 67px;
+			.yes,
+			.no {
+				display: inline-block;
+				width: 50%;
+				padding: 18px 0;
+				height: 65px;
+				text-align: center;
+				font-size: 24px;
+				font-weight: 300;
+				color: #fff;
+				border: 1px solid rgba(255,255,255,.1);
+			}
+			.yes {
+				background: url('../img/selected.png') center center no-repeat;
+				background-color: #1E9D2E;
+				border-top-left-radius: 6px;
+				border-bottom-left-radius: 6px;
+			}
+			.no {
+				background: url('../img/remove.png') center center no-repeat;
+				background-color: #BF2222;
+				border-top-right-radius: 6px;
+				border-bottom-right-radius: 6px;
+			}
+		}
+	}
+	/* 2) Friend list with remove buttons --- */
+	.topcoat-list {
+		border-bottom: 2px solid $border;
+		> ul {
+			overflow: hidden;
+			> li {
+				padding: 16px;
+				position: relative;
+				img {
+					vertical-align: middle;
+				}
+				span {
+					display: inline-block;
+					white-space: nowrap;
+					color: $color;
+					font-size: 16px;
+					font-weight: bold;
+					padding-left: 16px;
+				}
+				.remove-friend {
+					position: absolute;
+					right: 0;
+					top: 0;
+					width: $side-action-bar-width;
+					height: 100%;
+					cursor: pointer;
+					border-left: 1px solid #616363;
+					background: url('../img/remove.png') center center no-repeat;
+					background-color: rgba(255,0,0,.2);
+				}
+			}
+		}
+	}
+}

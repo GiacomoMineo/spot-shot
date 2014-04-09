@@ -1,0 +1,76 @@
+/**
+ * Global variables
+ * 
+ * Sections:
+ * 1) Sizes
+ * 2) Colors
+ * 3) Mixins
+ */
+
+// Sizes
+$viewport-width: 100%;
+
+$side-action-bar-width: 15%;
+
+$default-height: 10%;
+$normal-height-lanscape: 10%;
+$normal-height-portrait: 15%;
+
+$landscape-min-width: 600px;
+
+$keyboard-min-height: 300px;
+
+$bg-main: #222;
+$bg-dark: #111;
+$bg-light: #555;
+$bg-second: #333;
+$bg-b: #141c26;
+$bg-b-2: #0a141b;
+
+$border: #777;
+$border-light: #BEBEBE;
+$border-light-2: #7D7D7D;
+$border-dark: #444;
+$border-green: #D2FFD2;
+$border-red: #FFD2D2;
+
+$color: #06ba8f;
+$color-dark: #147f6e;
+$color-extra-dark: #0D4F45;
+$color-light: #06E6AE;
+$color-light-2: #0FF9BE;
+$color-second: #047F62;
+$color-alt: #1B96CC;
+$color-alt-second: #3463B1;
+$text: #ECEFF3;
+$text-2: #999;
+$text-3: #777;
+$color-red: #D14545;
+
+@mixin breakpoint($point) {
+	@if $point == landscape {
+		@media (min-width: $landscape-min-width) { @content; }
+	}
+  @if $point == keyboard {
+    @media (max-height: $keyboard-min-height) { @content; }
+  }
+}
+
+@mixin transition($type, $duration) {
+	 -moz-transition: $type $duration ease;
+-webkit-transition: $type $duration ease;
+     -o-transition: $type $duration ease;
+        transition: $type $duration ease;
+}
+
+/* Utility classes */
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

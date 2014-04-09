@@ -1,0 +1,210 @@
+/* index.scss - Styles for index page */
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../font/OpenSans.woff");
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("../font/OpenSansLight.woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("../font/OpenSansBold.woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../font/Montserrat.woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../font/MontserratBold.woff");
+  font-weight: 700;
+}
+
+@import "variables";
+@import "topcoat";
+@import "login";
+@import "friends";
+@import "groups";
+@import "message";
+@import "menu";
+@import "send";
+@import "map";
+
+/* Global resets */
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+*, *:before, *:after {
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+*::selection {
+	color: #fff;
+	background-color: #505050;
+}
+a {
+	text-decoration: none;
+}
+
+/* Height setup */
+body,
+html {
+	height: 100%;
+	background-color: $bg-main;
+}
+
+img {
+	border-radius: 4px;
+	border: 1px solid $text;
+}
+
+/* Page Container */
+.container {
+	width: $viewport-width;
+	height: 100%;
+	margin: 0 auto;
+	background-color: $bg-main;
+}
+
+/* --- Topcoat overrides --- */
+.topcoat-list__container {
+	border: none;
+	background-color: $bg-main;
+}
+.topcoat-list {
+	border: none;
+}
+.topcoat-list__header {
+	background-color: $bg-second;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+.topcoat-navigation-bar {
+	background-color: $bg-light;
+}
+
+/* --- Global styles --- */
+/* Title bar */
+.title {
+	position: fixed;
+	padding: 0;
+	top: 0;
+	width: 100%;
+	height: $default-height;
+	z-index: 3;
+	text-align: left;
+	h1 {
+		padding-left: 16px;
+		font-family: 'Montserrat', sans-serif;
+		font-weight: bold;
+		font-size: 21px;
+	}
+}
+.placeholder {
+	height: $default-height;
+}
+/* Contacts button */
+.contacts {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 4;
+	display: block;
+	width: $side-action-bar-width;
+	height: $default-height;
+	background: url('../img/contacts.png') center center no-repeat;
+	background-color: $color;
+	box-shadow: inset 0 -1px #333434,0 1px #454646;
+}
+.recipients {
+	float: left;
+	width: $side-action-bar-width;
+	height: 100%;
+	background: url('../img/recipients.png') no-repeat center center;
+	background-color: $color-alt;
+	box-shadow: inset 0 -1px #333434,0 1px #454646;
+}
+/* Group recipients tab */
+.group-tab {
+	position: fixed;
+	top: $default-height;
+	z-index: 4;
+	width: 100%;
+	text-align: left;
+	border-bottom: 1px solid $border-light;
+	background-color: $bg-main;
+	> ul {
+		> li {
+			padding: 0;
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 8px 16px 8px;
+			color: #fff;
+			img {
+				vertical-align: middle;
+			}
+			span {
+				white-space: nowrap;
+				color: $color;
+				font-size: 16px;
+				font-weight: bold;
+				padding-left: 16px;
+			}
+			&:first-child {
+				padding-top: 16px;
+			}
+			&:last-child {
+				padding-bottom: 16px;
+			}
+		}
+	}
+}
+/* Clean spinner */
+.spinner {
+	$spinner-size: 50px;
+	$line-size: 4px;
+	$speed: 0.8s;
+	$color-bg: rgba(255,255,255,.2);
+	$color-main: rgb(255,255,255);
+	height: $spinner-size;
+	width: $spinner-size;
+	margin: 0px auto;
+	position:relative;
+	-webkit-animation: rotation 1s infinite linear;
+	-moz-animation: rotation 1s infinite linear;
+	-o-animation: rotation 1s infinite linear;
+	animation: rotation 1s infinite linear;
+	border-left: $line-size solid $color-bg;
+	border-right: $line-size solid $color-bg;
+	border-bottom: $line-size solid $color-bg;
+	border-top: $line-size solid $color-main;
+	border-radius: $spinner-size;
+}
+@-webkit-keyframes rotation {
+	from {-webkit-transform: rotate(0deg);}
+	to {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+	from {-moz-transform: rotate(0deg);}
+	to {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+	from {-o-transform: rotate(0deg);}
+	to {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(359deg);}
+}

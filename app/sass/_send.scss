@@ -1,0 +1,342 @@
+/**
+ * Send Page
+ * 
+ * Sections:
+ * 1) Header text
+ * 2) Refresh button
+ * 3) Address text
+ * 4) Text input
+ * 5) Buttons and switch
+ * 6) Custom Spinners
+ * 7) Misc elements
+ */
+
+.section-send {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	/* 1) Header text --- */
+	> h1 {
+		color: $text;
+		text-align: center;
+		position: relative;
+		margin: 20px auto;
+		font-weight: 300;
+		font-size: 42px;
+	}
+	/* 2) Refresh button --- */
+	$refresh-size: 50px;
+	.refresh {
+		display: block;
+		width: $refresh-size;
+		height: $refresh-size;
+		margin: 0 auto;
+		border-radius: $refresh-size;
+		cursor: pointer;
+		background: url('../img/refresh.png') center center no-repeat;
+		background-color: $color-second;
+	}
+	/* 3) Address text --- */
+	.address-text {
+		margin: 0 auto;
+		> p {
+			color: $text;
+			text-align: center;
+			font-size: 24px;
+			font-weight: 300;
+			line-height: 30px;
+			max-width: 100%;
+			margin: 10px 0;
+		}
+	}
+	/* 4) Text input --- */
+	.text-input {
+		background-color: $bg-light;
+		font-family: 'Open Sans', sans-serif;
+		position: relative;
+		font-size: 20px;
+		line-height: 20px;
+		padding: 24px;
+		margin: 20px auto;
+		height: 90px;
+		border-left: none;
+		border-right: none;
+		border-top: 1px solid $border-light-2;
+		border-bottom: 1px solid $border-light-2;
+		border-radius: 0;
+		width: 100%;
+		&:focus {
+			outline: none;
+			border-color: $color;
+			box-shadow: none;
+		}
+	}
+	/* 5) Buttons and switch --- */
+	.btn-row {
+		margin: 20px 0 40px;
+		input[type=checkbox] {
+			visibility: hidden;
+		}
+	}
+	$width-switch: 50%;
+	$width-picture-btn: 50%;
+	.public-switch {
+		$height: 72px;
+		position: relative;
+		display: inline-block;
+		text-align: center;
+		vertical-align: text-top;
+		background-color: $bg-second;
+		width: $width-switch;
+		height: $height;
+		margin: 0 auto;
+		border-right: 1px solid $bg-second;
+		label {
+			display: block;
+			position: absolute;
+			width: 50%;
+			height: $height;
+			top: 0;
+			left: 0;
+			z-index: 2;
+			-webkit-transition: all .5s ease;
+			-moz-transition: all .5s ease;
+			-o-transition: all .5s ease;
+			-ms-transition: all .5s ease;
+			transition: all .5s ease;
+			cursor: pointer;
+			background: url('../img/private.png') no-repeat center center;
+			background-color: $color-extra-dark;
+			box-shadow: inset 0 1px #737373;
+			border: 1px solid $border-dark;
+		}
+		& input[type=checkbox]:checked + label {
+			left: 50%;
+			background: url('../img/public.png') no-repeat center center;
+			background-color: $color-light;
+		}
+		&:before, &:after {
+			font-family: 'Montserrat', sans-serif;
+			position: absolute;
+			width: 50%;
+			top: 0;
+			left: 0;
+			height: $height;
+			line-height: $height;
+			font-size: 15px;
+			text-transform: uppercase;
+			color: $text;
+		}
+		&:before {
+			content: attr(data-public);
+			left: 0;
+		}
+		&:after {
+			content: attr(data-private);
+			left: 50%;
+		}
+	}
+
+	.send-block {
+		position: relative;
+		width: 100%;
+		margin: 0 auto 60px;
+		.send {
+			font-family: 'Montserrat', sans-serif;
+			text-align: left;
+			position: relative;
+			cursor: pointer;
+			margin: 0 auto;
+			border-radius: 0;
+			height: 100px;
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 28px;
+			@include transition(background, 0.3s);
+			&.picture {
+				background-position: 87% center;
+			}
+			&#send {
+				background: url('../img/send.png') 99% center no-repeat;
+				background-color: $color;
+				&.done {
+					background-color: $color-light;
+					border-color: $border-green;
+				}
+				&.error {
+					background-color: $color-red;
+					border-color: $border-red;
+				}
+				@include breakpoint(landscape) {
+					width: 50%;
+				}
+				width: 100%;
+			}
+			&#sendFb {
+				width: 100%;
+				background: url('../img/send-fb.png') 99% center no-repeat;
+				background-color: #3B5998;
+				&.done {
+					background-color: $color-light;
+					border-color: $border-green;
+				}
+				&.error {
+					background-color: $color-red;
+					border-color: $border-red;
+				}
+				&.appSend {
+					@include breakpoint(landscape) {
+						width: 50%;
+					}
+					width: 100%;
+				}
+				width: 100%;
+			}
+		}
+		#picture-add {
+			position: relative;
+			display: block;
+			margin: 0 auto;
+			width: 20%;
+			height: 70px;
+			border-top-right-radius: 0px;
+			border-top-left-radius: 0px;
+			border: none;
+			outline: none;
+			box-shadow: inset 0 -1px rgba(255, 255, 255, 0.36);
+			background: url('../img/picture.png') no-repeat center center;
+			background-color: $color-dark;
+		}
+	}
+	.picture-btn {
+		display: inline-block;
+		vertical-align: text-top;
+		font-family: 'Montserrat', sans-serif;
+		text-align: left;
+		position: relative;
+		cursor: pointer;
+		width: $width-picture-btn;
+		border-radius: 0;
+		border-left: none;
+		border-right: none;
+		color: #fff;
+		text-transform: uppercase;
+		font-size: 20px;
+		background: url('../img/photo.png') 98% center no-repeat;
+		background-color: $color-dark;
+		@include transition(all, 0.3s);
+		&.uploading {
+			background-image: none;
+			background-color: $color-extra-dark;
+		}
+		&.done {
+			background-color: $color-light;
+			border-color: $border-green;
+		}
+		&.error {
+			background-color: $color-red;
+			border-color: $border-red;
+		}
+	}
+	/* 6) Custom Spinners --- */
+	#location-spinner {
+		margin: 20px auto;
+	}
+	.spinner-upload {
+		position: absolute;
+		margin: 0 auto;
+		top: 2px;
+		left: 0;
+		right: 0;
+	  width: 100%;
+	  height: 100%;
+	  text-align: center;
+	}
+	.spinner-upload > div {
+		$width: 4px;
+	  width: $width;
+	  height: 100%;
+	  margin: 0 1px;
+	  background-color: #FFF;
+
+	  display: inline-block;
+	  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  	animation: stretchdelay 1.2s infinite ease-in-out;
+	}
+	.spinner-upload .rect2 {
+	  -webkit-animation-delay: -1.1s;
+	  animation-delay: -1.1s;
+	}
+	.spinner-upload .rect3 {
+	  -webkit-animation-delay: -1.0s;
+	  animation-delay: -1.0s;
+	}
+	.spinner-upload .rect4 {
+	  -webkit-animation-delay: -0.9s;
+	  animation-delay: -0.9s;
+	}
+	.spinner-upload .rect5 {
+	  -webkit-animation-delay: -0.8s;
+	  animation-delay: -0.8s;
+	}
+	.spinner-upload .rect6 {
+	  -webkit-animation-delay: -0.7s;
+	  animation-delay: -0.7s;
+	}
+	/* 7) Misc elements --- */
+	#picture {
+		display: none;
+	}
+	.picture-frame {
+		position: relative;
+		height: 0;
+		width: 100%;
+		margin: 0 auto;
+		$space: 14px;
+		.frame {
+			display: block;
+			position: absolute;
+			top: $space;
+			right: 0;
+			left: 0;
+			margin: 0 auto 60px;
+			> img {
+				display: block;
+				margin: 0 auto;
+				background-color: $bg-light;
+				padding: 20px;
+				border-radius: 6px;
+				border: none;
+				vertical-align: middle;
+			}
+			&:before {
+				content: ' ';
+				height: 0;
+				width: 0;
+				position: absolute;
+				top: -$space;
+				right: 0;
+				left: 0;
+				margin: 0 auto;
+				border-left: $space solid transparent;
+				border-right: $space solid transparent;
+				border-bottom: $space solid $bg-light;
+			}
+		}
+	}
+}
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
