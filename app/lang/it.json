@@ -1,13 +1,15 @@
 {
 	"login": {
-		"Button": "Accedi con Facebook"
+        "Offline": "Nessuna connessione attiva trovata",
+		"ButtonFB": "Accedi - Facebook",
+        "ButtonApp": "Accedi - SpotShot"
 	},
     "friends": {
         "MainTitle": "SpotShot",
         "GroupsHeader": "Gruppi",
         "FriendsHeader": "Amici",
         "SearchBox": "Cerca",
-        "Offline": "Nessuna connessione attiva trovata.",
+        "Offline": "Nessuna connessione attiva trovata",
         "MultipleSend": "Invio Multiplo",
         "ErrorNameShort": "Nome gruppo troppo corto",
         "GroupCreated": "Gruppo creato!",

@@ -1,13 +1,15 @@
 {
 	"login": {
-		"Button": "Log In with Facebook"
+        "Offline": "No active connection found",
+		"ButtonFB": "Log In - Facebook",
+        "ButtonApp": "Log In - SpotShot"
 	},
     "friends": {
         "MainTitle": "SpotShot",
         "GroupsHeader": "Groups",
         "FriendsHeader": "Friends",
         "SearchBox": "Search",
-        "Offline": "No active connection found.",
+        "Offline": "No active connection found",
         "MultipleSend": "Multiple Send",
         "ErrorNameShort": "Group name too short",
         "GroupCreated": "Group created!",

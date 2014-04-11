@@ -1,5 +1,6 @@
-app.controller('MapCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'googlemaps', '$location', 'localization',
-	function ($scope, $routeParams, $window, $timeout, googlemaps, $location, localization) {
+app.controller('MapCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'googlemaps', '$location', 'localization', 'facebook',
+	function ($scope, $routeParams, $window, $timeout, googlemaps, $location, localization, facebook) {
+		facebook.redirectCheck();
 		localization.setPageLocale("map", function(data) { $scope.locale = data; });
 
 		// Map loading routine

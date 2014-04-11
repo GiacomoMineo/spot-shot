@@ -9,7 +9,7 @@
 			<h1 class="topcoat-navigation-bar__title">{{locale.MainTitle}}</h1>
 		</div>
 	</div>
-	<div class="offline" ng-hide="online">{{locale.Offline}}</div>
+	<div ng-hide="online" class="offline"><span>{{locale.Offline}}</span><img src="img/offline.png"></div>
 	<div class="placeholder"></div>
 	<div ng-show="online" class="topcoat-list">
 		<h3 ng-show="groups.length > 0" class="topcoat-list__header">{{locale.GroupsHeader}}</h3>

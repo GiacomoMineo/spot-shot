@@ -1,5 +1,6 @@
-app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'googlemaps', 'localization', '$http', 'messageService',
-	function ($scope, $routeParams, $window, $timeout, googlemaps, localization, $http, messageService) {
+app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'googlemaps', 'localization', '$http', 'messageService', 'facebook',
+	function ($scope, $routeParams, $window, $timeout, googlemaps, localization, $http, messageService, facebook) {
+		facebook.redirectCheck();
 		localization.setPageLocale("send", function(data) { $scope.locale = data; });
 
 		$window.getLocation = function() {

@@ -8,18 +8,104 @@
 
 .section-login {
 	/* 1) Top bar --- */
-	> h1 {
+	.title h1 {
+		padding: 0;
 		text-align: center;
 	}
 	/* 2) Login button --- */
 	.login {
+		font-family: 'Montserrat', sans-serif;
 		position: absolute;
 		display: block;
-		top: 45%; left: 0; right: 0;
-		width: 90%;
+		left: 0; 
+		right: 0;
+		@include breakpoint(landscape) {
+			height: 40%;
+		}
+		height: 30%;
+		width: 100%;
+		border-radius: 0;
 		margin: 0 auto;
-		color: #fff;
 		cursor: pointer;
-		background-color: rgb(76, 102, 164);
+		color: $text;
+		font-size: 32px;
+		font-weight: bold;
+		text-transform: uppercase;
+		box-shadow: inset 0 1px #737373;
+		border: 1px solid #333434;
+		z-index: 1;
+	}
+	.app {
+		@include breakpoint(landscape) {
+			top: 15%;
+		}
+		top: 25%;
+		background-color: $color;
+	}
+	.fb {
+		/* Double button change to 55% no media query */
+		@include breakpoint(landscape) {
+			top: 35%;
+		}
+		top: 40%;
+		background-color: $facebook;
+	}
+	.login-tab {
+		position: absolute;
+		@include breakpoint(landscape) {
+			top: 15%;
+		}
+		top: 25%; 
+		left: 0; 
+		right: 0;
+		@include breakpoint(landscape) {
+			height: 80%;
+		}
+		height: 60%;
+		width: 100%;
+		background-color: $color;
+		z-index: 2;
+		.input-block {
+			position: relative;
+			height: 50%;
+			&:before {
+				content: '';
+				display: block;
+				@include breakpoint(landscape) {
+					height: 0;
+				}
+				height: 15%;
+			}
+			label {
+				display: block;
+				@include breakpoint(landscape) {
+					height: 45%;
+				}
+				height: 25%;
+				text-align: center;
+				font-size: 26px;
+				font-weight: bold;
+				color: $text;
+			}
+			input {
+				display: block;
+				@include breakpoint(landscape) {
+					height: 45%;
+				}
+				height: 40%;
+				width: 90%;
+				margin: 0 auto;
+				padding: 0 16px;
+				font-family: 'Open Sans', sans-serif;
+				font-size: 26px;
+				color: $color;
+				border: 1px solid transparent;
+				border-radius: 8px;
+				&:focus {
+					border-color: $color-light;
+					box-shadow: 0 0 10px 0 $color-light;
+				}
+			}
+		}
 	}
 }

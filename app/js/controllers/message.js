@@ -1,5 +1,6 @@
-app.controller('MessageCtrl', ['$scope', 'localization', '$routeParams', 'messageService',
-	function($scope, localization, $routeParams, messageService) {
+app.controller('MessageCtrl', ['$scope', 'localization', '$routeParams', 'messageService', 'facebook',
+	function($scope, localization, $routeParams, messageService, facebook) {
+		facebook.redirectCheck();
 		localization.setPageLocale("message", function(data) { $scope.locale = data; });
 
 		$scope.chats = messageService.getUserChats($routeParams.id);

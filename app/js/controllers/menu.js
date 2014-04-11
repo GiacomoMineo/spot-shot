@@ -1,7 +1,9 @@
-app.controller('MenuCtrl', ['$scope', '$routeParams', 'localization',
-	function ($scope, $routeParams, localization) {
+app.controller('MenuCtrl', ['$scope', 'facebook', '$routeParams', 'localization',
+	function ($scope, facebook, $routeParams, localization) {
+		facebook.redirectCheck();
 		localization.setPageLocale("menu", function(data) { $scope.locale = data; });
 
+		// --- Page initialization
 		// Variables initialization
 		$scope.lat = '0';
 		$scope.lng = '0';
@@ -12,15 +14,16 @@ app.controller('MenuCtrl', ['$scope', '$routeParams', 'localization',
 		var isTrueSet = ($routeParams.group === 'true');
 		$scope.group = isTrueSet;
 
+		// Interactive elements initialization (jQuery)
+		$('.group-tab').slideUp();
+
 		// Get the group item
 		if ($scope.group) {
 			var group = window.localStorage.getArray("group" + $scope.id);
 			$scope.friends = group.friends;
 		}
 
-		// Interactive elements initialization (jQuery)
-		$('.group-tab').slideUp();
-
+		// --- UI Interactions
 		// Toggle the recipients tab (only if the recipient is a group)
 		$scope.toggleRecipients = function() {
 			if ($scope.group) {

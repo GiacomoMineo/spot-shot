@@ -46,6 +46,7 @@ $text: #ECEFF3;
 $text-2: #999;
 $text-3: #777;
 $color-red: #D14545;
+$facebook: #3B5998;
 
 @mixin breakpoint($point) {
 	@if $point == landscape {

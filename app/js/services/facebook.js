@@ -20,7 +20,7 @@ app.service('facebook', ['$rootScope', '$location', '$window', '$timeout',
 		    		$timeout(function() {
 					    $rootScope.$apply(function () {
 					       	that.authorized = false;
-					       	$location.path('/');
+					       	$location.path('/login');
 					    });
 				    });
 			    } else {
@@ -28,14 +28,14 @@ app.service('facebook', ['$rootScope', '$location', '$window', '$timeout',
 			    	$timeout(function() {
 				        $rootScope.$apply(function () {
 				        	that.authorized = false;
-				        	$location.path('/');
+				        	$location.path('/login');
 				        });
 			    	});
 			    }
 		} else {
-			$log.info('No valid authResponse found, user logged out');
 			$rootScope.$apply(function () {
 				that.authorized = false;
+				$location.path('/login');
 			});
 		}
 	});
@@ -71,5 +71,15 @@ app.service('facebook', ['$rootScope', '$location', '$window', '$timeout',
 				$rootScope.$apply();
 			});
 		});		
+	}
+
+	this.redirectCheck = function () {
+		if($rootScope.online) {
+			this.getLoginStatus(function(response) {
+				if (!response.authResponse) {
+					$location.path('/login'); 
+				}
+			});
+		}
 	}
 }]);

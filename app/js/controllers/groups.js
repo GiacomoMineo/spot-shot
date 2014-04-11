@@ -1,5 +1,6 @@
-app.controller('GroupsCtrl', ['$scope', '$routeParams', 'localization', '$location',
-	function($scope, $routeParams, localization, $location) {
+app.controller('GroupsCtrl', ['$scope', '$routeParams', 'localization', '$location', 'facebook',
+	function($scope, $routeParams, localization, $location, facebook) {
+		facebook.redirectCheck();
 		localization.setPageLocale("group", function(data) { $scope.locale = data; });
 
 		// Variables initialization

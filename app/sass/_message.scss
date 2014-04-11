@@ -20,6 +20,7 @@ $border-thin: 1px solid $bg-second;
 	$line-height-msg: 25px;
 	.message-wrapper {
 		.chats {
+			position: relative;
 			background-color: $bg-main;
 			border-bottom: $border-thick;
 			$width-left: 30%;

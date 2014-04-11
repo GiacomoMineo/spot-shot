@@ -175,7 +175,7 @@
 			&#sendFb {
 				width: 100%;
 				background: url('../img/send-fb.png') 99% center no-repeat;
-				background-color: #3B5998;
+				background-color: $facebook;
 				&.done {
 					background-color: $color-light;
 					border-color: $border-green;

@@ -104,6 +104,10 @@ img {
 	z-index: 3;
 	text-align: left;
 	h1 {
+		@include breakpoint(landscape) {
+			top: 25%;
+		}
+		top: 30%;
 		padding-left: 16px;
 		font-family: 'Montserrat', sans-serif;
 		font-weight: bold;
@@ -112,6 +116,24 @@ img {
 }
 .placeholder {
 	height: $default-height;
+}
+/* Offline warning */
+.offline {
+	position: absolute;
+	top: 45%;
+	text-align: center;
+	width: 100%;
+	line-height: 38px;
+	font-size: 38px;
+	color: $text;
+	span {
+		vertical-align: middle;
+	}
+	img {
+		padding-left: 16px;
+		border: none;
+		vertical-align: middle;
+	}
 }
 /* Contacts button */
 .contacts {

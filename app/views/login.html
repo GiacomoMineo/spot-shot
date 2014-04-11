@@ -1,8 +1,22 @@
 <div class="section-login">
 	<div class="topcoat-navigation-bar title">
-	    <div class="topcoat-navigation-bar__item center full">
-	        <h1 class="topcoat-navigation-bar__title">Tell Me Where</h1>
-	    </div>
+	  <div class="topcoat-navigation-bar__item center full">
+	    <h1 class="topcoat-navigation-bar__title">SpotShot</h1>
+	  </div>
 	</div>
-	<button ng-click="facebookLogin()" class="topcoat-button--large login">{{locale.Button}}</button>
+	<div ng-hide="online" class="offline"><span>{{locale.Offline}}</span><img src="img/offline.png"></div>
+	<div ng-show="online">
+		<div class="login-tab">
+			<div class="input-block">
+				<label for="email">E-mail</label>
+				<input id="email" type="text">
+			</div>
+			<div class="input-block">
+				<label for="password">Password</label>
+				<input id="password" type="password">
+			</div>
+		</div>
+		<!--<button ng-click="appLogin()" class="login app">{{locale.ButtonApp}}</button>!-->
+		<button ng-click="facebookLogin()" class="login fb">{{locale.ButtonFB}}</button>
+	</div>
 </div>
