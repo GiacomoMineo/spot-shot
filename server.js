@@ -14,7 +14,7 @@ var sender = new gcm.Sender('AIzaSyAUYOUUPOBjFPHDU083GnZpJk1yen7QvhA');
 // RESTful endpoint for message
 app.post('/message', function(req, res){
 	var message = req.body;
-	if(registrationId) {
+	if(req.body.regid) {
 		var registrationId = req.body.regid;
 		console.log(message);
 		// Send the message to the Google Cloud Service
