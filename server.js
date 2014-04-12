@@ -9,7 +9,7 @@ app.use(bodyParser());
 app.use(express.static(__dirname + '/app'));
 
 // Google Cloud Messaging API
-var sender = new gcm.Sender('AIzaSyDvV37k64WuuizvLtz7btVouEPqEZYGhl4');
+var sender = new gcm.Sender('AIzaSyAUYOUUPOBjFPHDU083GnZpJk1yen7QvhA');
 
 // RESTful endpoint for message
 app.post('/message', function(req, res){
