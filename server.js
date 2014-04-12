@@ -24,7 +24,7 @@ app.post('/message', function(req, res){
 		gcmMsg.addData('msgcnt','3'); // Shows up in the notification in the status bar
 		gcmMsg.addData('soundname','beep.wav'); //Sound in www folder
 		gcmMsg.timeToLive = 3000;
-		sender.send(message, registrationId, 4, function (result) {
+		sender.send(gcmMsg, registrationId, 4, function (result) {
 	    console.log(result);
 		});
 	}
@@ -35,3 +35,4 @@ app.post('/message', function(req, res){
 var port = Number(process.env.PORT || 5000);
 app.listen(port);
 console.log('Server listening on port ' + port + '...');
+
