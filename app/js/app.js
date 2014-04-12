@@ -42,7 +42,7 @@ var app = angular.module('spotshotApp');
 // Firebase SpotShot URI
 app.constant('FIREBASE_URI', 'https://blinding-fire-9444.firebaseio.com/spotshot');
 // Notification Server API Endpoint base URI
-app.constant('NOTIFICATIONS_URI', 'http://spot-shot-app.herokuapp.com');
+app.constant('NOTIFICATIONS_URI', 'http://www.mineogiacomo.com');
 
 // Connection detection and event listener
 app.run(function($window, $rootScope) {

@@ -63,8 +63,12 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
 		userChat.$child('messages').$add(message);
 		userChat.$child('user').$child('name').$set(chatName);
 		userChat.$child('user').$child('picture').$set(chatPicture);
-		// Read Device registrationId from the local storage
+
+		// TODO - Read recipient device registrationId from Firebase
+		// var regid = '';
+		// DEBUG - Read Device registrationId from the local storage
 		var regid = window.localStorage.getItem("regid");
+
 		message['regid'] = regid;
 		// Push the message to the notification server
 		var data = JSON.stringify(message);
