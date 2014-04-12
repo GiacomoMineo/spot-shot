@@ -9,7 +9,10 @@
     "url": "https://github.com/GiacomoMineo/spot-shot.git"
   },
   "dependencies": {
-  	"express": "4.0.0-rc4"
+  	"express": "4.0.0-rc4",
+    "body-parser": "1.0.1",
+    "cors": "2.2.0",
+    "node-gcm": "0.9.10"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

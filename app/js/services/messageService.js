@@ -1,5 +1,5 @@
-app.factory('messageService', ['FIREBASE_URI', '$firebase', 'facebook',
-function(FIREBASE_URI, $firebase, facebook) {
+app.factory('messageService', ['FIREBASE_URI', 'NOTIFICATIONS_URI', '$firebase', '$http', 'facebook', 
+function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
 	var ref = new Firebase(FIREBASE_URI + '/users');
 	var users = $firebase(ref);
 
@@ -58,10 +58,24 @@ function(FIREBASE_URI, $firebase, facebook) {
 
 	// Add message to target chat
 	var addMessage = function(userId, chatId, chatName, chatPicture, message) {
+		// Push the message in the chat
 		var userChat = users.$child(chatId).$child('chats').$child(userId);
 		userChat.$child('messages').$add(message);
 		userChat.$child('user').$child('name').$set(chatName);
 		userChat.$child('user').$child('picture').$set(chatPicture);
+		// Read Device registrationId from the local storage
+		var regid = window.localStorage.getItem("regid");
+		message['regid'] = regid;
+		// Push the message to the notification server
+		var data = JSON.stringify(message);
+		console.log(data);
+		$http.post(NOTIFICATIONS_URI + '/message', data)
+			.success(function(data) {
+				console.log('Success: ' + data);
+			})
+			.error(function(data) {
+				console.log('Error: ' + data);
+			});
 	}
 
 	// Remove message with passed id from the specified chat

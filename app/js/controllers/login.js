@@ -1,7 +1,7 @@
 app.controller('LoginCtrl', ['$scope', 'facebook', '$location', 'localization',
 	function($scope, facebook, $location, localization) {
 		localization.setPageLocale("login", function(data) { $scope.locale = data; });
-
+		
 		// --- Page initialization
 		// Interactive elements initialization (jQuery)
 		$('.login-tab').hide();

@@ -39,8 +39,10 @@ angular.module('spotshotApp', [
 
 var app = angular.module('spotshotApp');
 
-// Firebase Tell Me Where URI
+// Firebase SpotShot URI
 app.constant('FIREBASE_URI', 'https://blinding-fire-9444.firebaseio.com/spotshot');
+// Notification Server API Endpoint base URI
+app.constant('NOTIFICATIONS_URI', 'http://localhost:5000');
 
 // Connection detection and event listener
 app.run(function($window, $rootScope) {

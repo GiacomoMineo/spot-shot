@@ -231,7 +231,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 			});
 		}
 
-		// Send the message
+		// Send the message via App
 		$scope.sendAppMessage = function() {
 			$('#send, #sendFb, #picture-add').prop('disabled', true);
 			$('#send > span').text($scope.locale.ButtonSending);

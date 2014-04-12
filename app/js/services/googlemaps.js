@@ -8,7 +8,7 @@ app.factory('googlemaps', [function() {
 		script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places&' +
       		'callback=' + callback;
 		document.body.appendChild(script);
-    };
+  };
 
     return GoogleService;
 }]);
