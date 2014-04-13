@@ -73,7 +73,7 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
 		// Push the message to the notification server
 		var data = JSON.stringify(message);
 		console.log(data);
-		$http.post(NOTIFICATIONS_URI + '/message', data)
+		$http.post(NOTIFICATIONS_URI + '/message/', data)
 			.success(function(data) {
 				console.log('Success: ' + data);
 			})

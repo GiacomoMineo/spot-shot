@@ -40,8 +40,8 @@ function onNotificationGCM(e) {
       {
       	console.log('Inline notification');
 				// if the notification contains a soundname, play it.
-				var my_media = new Media("/android_asset/www/" + e.soundname);
-				my_media.play();
+				/*var my_media = new Media("/android_asset/www/" + e.soundname);
+				my_media.play();*/
 			}
 			else
 			{	// otherwise we were launched because the user touched a notification in the notification tray.
