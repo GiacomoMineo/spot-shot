@@ -14,8 +14,7 @@
         "ErrorNameShort": "Group name too short",
         "GroupCreated": "Group created!",
         "FriendsAdded": "Friends added to ",
-        "WelcomeTitle": "Welcome to SpotShot!",
-        "WelcomeMessage": "This is the message section, enjoy!"
+        "NewMessage": "New message!"
     },
     "menu": {
         "ButtonHere": "Here",
@@ -51,6 +50,11 @@
     },
     "message": {
         "Title": "Messages",
-        "Map": "Map"
+        "Map": "Map",
+        "MessagesEmpty": "No messages here"
+    },
+    "welcome": {
+        "WelcomeTitle": "Welcome to SpotShot!",
+        "WelcomeMessage": "This is the message section, enjoy!"
     }
 }

@@ -39,6 +39,11 @@ angular.module('spotshotApp', [
 
 var app = angular.module('spotshotApp');
 
+if(window.plugins) {
+  var pushNotification;
+  pushNotification = window.plugins.pushNotification;
+}
+
 // Firebase SpotShot URI
 app.constant('FIREBASE_URI', 'https://blinding-fire-9444.firebaseio.com/spotshot');
 // Notification Server API Endpoint base URI
@@ -71,6 +76,7 @@ app.filter('orderDate', function() {
       var hour = d.split(' ')[1].split(':')[0];
       var minute = d.split(':')[1];
       item.body.time = new Date(year, --month, day, hour, minute);
+      item['key'] = key;
       filtered.push(item);
     });
     filtered.sort(function (a, b) {
@@ -85,7 +91,12 @@ app.filter('orderDate', function() {
       var ds = d.today() + ' ' + d.timeNow();
       item.body.time = ds;
     });
-    return filtered;
+    // Rebuild object structure
+    var result = new Object();
+    for(i = 0; i < filtered.length; i++) {
+      result[filtered[i].key] = filtered[i];
+    }
+    return result;
   };
 });
 

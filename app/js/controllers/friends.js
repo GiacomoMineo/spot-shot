@@ -1,6 +1,72 @@
-app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 'localization', '$http', 'messageService',
-	function ($scope, facebook, $location, $rootScope, localization, $http, messageService) {
+app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 'localization', '$http', 'messageService', '$window',
+	function ($scope, facebook, $location, $rootScope, localization, $http, messageService, $window) {
 		localization.setPageLocale("friends", function(data) { $scope.locale = data; });
+
+		// GCM notifications for Android
+		$window.onNotificationGCM = function (e) {
+			console.log('Event received: ' + e.event);
+
+			switch( e.event )
+			{
+				case 'registered':
+					if ( e.regid.length > 0 )
+					{
+						// Launch account registration routine
+						FB.api(
+							'/me?fields=id,name',
+							'GET',
+							function(response) {
+								messageService.setupAccount(response.id, response.name, e.regid);
+							}
+						);
+					}
+					break;
+				case 'message':
+					// if this flag is set, this notification happened while we were in the foreground.
+		      // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+		      if (e.foreground)
+		      {
+						// if the notification contains a soundname, play it.
+						/*var my_media = new Media("/android_asset/www/" + e.soundname);
+						my_media.play();*/
+						alert($scope.locale.NewMessage);
+					}
+					else
+					{	// otherwise we were launched because the user touched a notification in the notification tray.
+						var userId = window.localStorage.getItem('userId');
+						$location.path('/message/' + userId);
+					}
+					break;
+				case 'error':
+					console.log('Error: ' + e.msg);
+					break;
+				default:
+					console.log('Unknown message');
+					break;
+			}
+		}
+		$window.successHandler = function(result) {
+			console.log('Registration successful: ' + result);
+		}
+		$window.errorHandler = function(error) {
+			console.log('Registration error: ' + error);
+		}
+
+		if(typeof device != 'undefined') {
+			// Device regid request from Google
+			if (device.platform == 'android' || device.platform == 'Android') {
+				pushNotification.register(
+					successHandler, 
+					errorHandler,
+					{
+						"senderID":"659074549826",
+						"ecb":"onNotificationGCM"
+					}
+				);
+			} else {
+				// Registration for other platforms
+			}
+		}
 
 		// Variables initialization
 		$scope.selectedFriends = [];
@@ -10,7 +76,6 @@ app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 
 		$scope.orderProp = 'name';
 		$scope.searchOpen = false;
 		var friendSpinner = document.getElementById('friend-spinner');
-		var spotshotPageId = "190955174445459";
 
 		// Interactive elements initialization (jQuery)
 		$('.text-alert').hide();
@@ -33,8 +98,7 @@ app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 
 						'GET',
 						function(response) {
 							$scope.userId = response.id;
-							userIdLocal(response.id);
-							firebaseUserInit(response.id);
+							window.localStorage.setItem("userId", response.id);
 							facebook.loadFriends(function(response) {
 								// Callback for successful friendlist loading
 								friendSpinner.className = "";
@@ -54,50 +118,6 @@ app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 
     while (window.localStorage.getArray("group" + i)) {
       $scope.groups.push(window.localStorage.getArray("group" + i));
       i++;
-		}
-
-		function userIdLocal(userId) {
-			window.localStorage.setItem("userId", userId);
-		}
-
-		// Firebase user check and initialization
-		function firebaseUserInit(userId) {
-			messageService.checkUser(userId, function(exists) {
-				if(!exists) {
-					// Add the user
-					// Welcome message
-					var date = new Date();
-					FB.api(
-						spotshotPageId + '?fields=name,picture',
-						'GET',
-						function(response) {
-							if(response.error) {
-								// Error
-							} else {
-								// Success
-								var name = response.name;
-								var picture = response.picture.data.url;
-								var message = messageService.newMessage(
-									spotshotPageId,
-									window.localStorage.getItem("userId"),
-									$scope.locale.WelcomeTitle,
-									$scope.locale.WelcomeMessage,
-									'',
-									'',
-									''
-								);
-								messageService.addMessage(
-									spotshotPageId,
-									window.localStorage.getItem("userId"),
-									name,
-									picture,
-									message
-								);
-							}
-						}
-					);
-				}
-			});
 		}
 
 		// Send message to multiple friends

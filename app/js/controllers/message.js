@@ -4,7 +4,12 @@ app.controller('MessageCtrl', ['$scope', 'localization', '$routeParams', 'messag
 		localization.setPageLocale("message", function(data) { $scope.locale = data; });
 
 		$scope.chats = messageService.getUserChats($routeParams.id);
-
+		$scope.nochats = 1;
+		$scope.chats.$on('change', function() {
+			$scope.nochats = $scope.chats.$getIndex();
+			$scope.nochats = $scope.nochats.length;
+		});
+		
 		$scope.toggleChat = function(id, messageClick) {
 			var $chat = $('#' + id);
 			var animate = false;
@@ -55,8 +60,7 @@ app.controller('MessageCtrl', ['$scope', 'localization', '$routeParams', 'messag
 		}
 
 		$scope.removeMessage = function(chatId, messageId) {
-			console.log('chatid: ' + chatId + ', messageid: ' + messageId);
-			//messageService.removeMessage($routeParams.id, chatId, messageId);
+			messageService.removeMessage($routeParams.id, chatId, messageId);
 		};
 
 		$scope.togglePicture = function(e) {

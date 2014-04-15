@@ -1,10 +1,14 @@
-app.factory('messageService', ['FIREBASE_URI', 'NOTIFICATIONS_URI', '$firebase', '$http', 'facebook', 
-function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
+app.factory('messageService', ['FIREBASE_URI', 'NOTIFICATIONS_URI', '$firebase', '$http', 'facebook', 'localization',
+function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook, localization) {
+	var locale;
+	localization.setPageLocale("welcome", function(data) { locale = data; });
 	var ref = new Firebase(FIREBASE_URI + '/users');
 	var users = $firebase(ref);
 
 	// Max messages to to keep
 	var max_messages = 3;
+	// SpotShot Facebook page id
+	var spotshotPageId = "190955174445459";
 
 	// Constructor for the message object
 	var newMessage = function(fromId, toId, location, content, map, address, picture) {
@@ -33,16 +37,6 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
 		return chats;
 	}
 
-	var checkUser = function(id, callback) {
-		users.$on('loaded', function() {
-			if (typeof users[id] === 'undefined') {
-				callback(false);
-			} else {
-				callback(true);
-			}
-		})
-	}
-
 	var cleanChat = function(userId, chatId) {
 		var chatMessages = users.$child(chatId).$child('chats').$child(userId).$child('messages');
 		chatMessages.$on('loaded', function() {
@@ -56,6 +50,64 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
 		})
 	}
 
+	// Add a new account (app ownership)
+	var setupAccount = function(userId, userName, deviceId) {
+		users.$on('loaded', function() {
+			// If the account doesn't exist, create it and set the display_name
+			if (typeof users[userId] === 'undefined') {
+				users.$child(userId).$child('account').$child('display_name').$set(userName);
+				sendWelcomeMessage(userId);
+			}
+			// Load account devices and check if the current one already exists
+			var devices = users.$child(userId).$child('account').$child('devices');
+			devices.$on('loaded', function() {
+				var keys = devices.$getIndex();
+				var found = false;
+				angular.forEach(keys, function(i) {
+					if(devices[i] == deviceId) {
+						found = true;
+					}
+				});
+				// If the device doesn't already exist, add it
+				if (!found) {
+					devices.$add(deviceId);
+				}
+			});
+		});
+	}
+
+	var sendWelcomeMessage = function(id) {
+		FB.api(
+			spotshotPageId + '?fields=name,picture',
+			'GET',
+			function(response) {
+				if(response.error) {
+					// Error
+				} else {
+					// Success
+				  var name = response.name;
+					var picture = response.picture.data.url;
+					var message = newMessage(
+						spotshotPageId,
+						id,
+						locale.WelcomeTitle,
+						locale.WelcomeMessage,
+						'',
+						'',
+						''
+					);
+					addMessage(
+						spotshotPageId,
+						id,
+						name,
+						picture,
+						message
+					);
+				}
+			}		
+		);
+	}
+
 	// Add message to target chat
 	var addMessage = function(userId, chatId, chatName, chatPicture, message) {
 		// Push the message in the chat
@@ -64,22 +116,27 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
 		userChat.$child('user').$child('name').$set(chatName);
 		userChat.$child('user').$child('picture').$set(chatPicture);
 
-		// TODO - Read recipient device registrationId from Firebase
-		// var regid = '';
-		// DEBUG - Read Device registrationId from the local storage
-		var regid = window.localStorage.getItem("regid");
-
-		message['regid'] = regid;
-		// Push the message to the notification server
-		var data = JSON.stringify(message);
-		console.log(data);
-		$http.post(NOTIFICATIONS_URI + '/message/', data)
-			.success(function(data) {
-				console.log('Success: ' + data);
-			})
-			.error(function(data) {
-				console.log('Error: ' + data);
+		// Read recipient device registrationId from Firebase
+		var devices = users.$child(chatId).$child('account').$child('devices');
+		devices.$on('loaded', function() {
+			var keys = devices.$getIndex();
+			var regid = new Array();
+			angular.forEach(keys, function(i) {
+				regid.push(devices[i]);
 			});
+			message['name'] = chatName;
+			message['regid'] = regid;
+			// Push the message to the notification server
+			var data = JSON.stringify(message);
+			console.log(data);
+			$http.post(NOTIFICATIONS_URI + '/message/', data)
+				.success(function(data) {
+					console.log('Success: ' + data);
+				})
+				.error(function(data) {
+					console.log('Error: ' + data);
+				});
+		});
 	}
 
 	// Remove message with passed id from the specified chat
@@ -97,9 +154,10 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook) {
 
 	return {
 		newMessage: newMessage,
+		setupAccount: setupAccount,
+		sendWelcomeMessage: sendWelcomeMessage,
 		getUsers: getUsers,
 		getUserChats: getUserChats,
-		checkUser: checkUser,
 		cleanChat: cleanChat,
 		addMessage: addMessage,
 		removeMessage: removeMessage

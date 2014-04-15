@@ -7,6 +7,7 @@
 	<a href="#/friends" class="contacts"></a>
 	<div class="placeholder"></div>
 	<div class="message-wrapper">
+		<div ng-hide="nochats" class="no-messages"><img src="img/nomsg.png"><span>{{locale.MessagesEmpty}}</span></div>
 		<div id="{{id}}" class="chats" ng-repeat="(id, chat) in chats">
 			<div ng-click="toggleChat(id, false)" class="user-wrapper">
 				<div class="user">

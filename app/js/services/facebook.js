@@ -1,5 +1,5 @@
-app.service('facebook', ['$rootScope', '$location', '$window', '$timeout',
-	function ($rootScope, $location, $window, $timeout) {
+app.service('facebook', ['$rootScope', '$location', '$timeout',
+	function ($rootScope, $location, $timeout) {
 
 	var that = this;
 

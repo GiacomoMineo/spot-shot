@@ -225,8 +225,7 @@ module.exports = function (grunt) {
             'lang/*.json',
             'views/{,*/}*.html',
             'css/*.css',
-            'img/*',
-            'js/notifications.js'
+            'img/*'
           ]
         }]
       }
