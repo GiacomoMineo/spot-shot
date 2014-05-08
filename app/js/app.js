@@ -54,6 +54,7 @@ app.run(function($window, $rootScope) {
   $rootScope.online = window.navigator.onLine;
   $window.addEventListener("offline", function () {
     $rootScope.$apply(function() {
+      console.log("Offline event");
       $rootScope.online = false;
     });
   }, false);
@@ -91,12 +92,7 @@ app.filter('orderDate', function() {
       var ds = d.today() + ' ' + d.timeNow();
       item.body.time = ds;
     });
-    // Rebuild object structure
-    var result = new Object();
-    for(i = 0; i < filtered.length; i++) {
-      result[filtered[i].key] = filtered[i];
-    }
-    return result;
+    return filtered;
   };
 });
 

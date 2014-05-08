@@ -96,6 +96,8 @@
 				width: 100%;
 				height: 100%;
 				padding: 16px;
+				padding-left: 12px;
+				border-left: 4px solid transparent;
 				color: $color;
 				white-space: nowrap;
 				overflow: hidden;
@@ -126,6 +128,9 @@
 				> span { 
 					background: url('../img/selected.png') no-repeat center center;
 				}
+			}
+			&.app {
+				border-left: 4px solid $color;
 			}
 		}
 	}

@@ -1,6 +1,14 @@
 app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 'localization', '$http', 'messageService', '$window',
 	function ($scope, facebook, $location, $rootScope, localization, $http, messageService, $window) {
 		localization.setPageLocale("friends", function(data) { $scope.locale = data; });
+		
+		document.addEventListener("online", function() {
+		  alert('Online');
+		}, false);
+
+		document.addEventListener("offline", function() {
+		  alert('Offline');
+		}, false);
 
 		// GCM notifications for Android
 		$window.onNotificationGCM = function (e) {
@@ -103,6 +111,15 @@ app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 
 								// Callback for successful friendlist loading
 								friendSpinner.className = "";
 								$scope.friends = response;
+								// Get users that have the app from firebase and apply classes
+								var ids = messageService.getUsersIds();
+								for(i = 0; i < ids.length; i++) {
+									for(j = 0; j < $scope.friends.length; j++) {
+										if($scope.friends[j].id == ids[i]) {
+											$scope.friends[j]['app'] = true;
+										}
+									}
+								}
 							});
 						}
 					);
@@ -244,8 +261,16 @@ app.controller('FriendsCtrl', ['$scope', 'facebook', '$location', '$rootScope', 
 			scrollToTop();
 		};
 
+		// Event for search input toggling
 		$scope.toggleSearch = function() {
 			$scope.searchOpen = !$scope.searchOpen;
+			if($scope.searchOpen) {
+				$scope.query = '';
+				$('#friend-search').focus();
+			} else {
+				$('#friend-search').blur();
+			}
+			
 		}
 
 		// Scroll the page to the top

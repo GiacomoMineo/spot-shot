@@ -30,7 +30,7 @@
 		<h3 class="topcoat-list__header">{{locale.FriendsHeader}}</h3>
 		<div id="friend-spinner" class="spinner"></div>
 		<ul class="topcoat-list__container friends-list">
-			<li class="topcoat-list__item" ng-repeat="friend in friends | filter:query | orderBy:orderProp">
+			<li ng-class="{'app':friend.app}" class="topcoat-list__item" ng-repeat="friend in friends | filter:query | orderBy:orderProp">
 				<a href="#/menu/{{friend.id}},{{friend.name}},false">
 					<img ng-src="{{friend.picture.data.url}}" />
 					<span>{{friend.name}}</span>

@@ -8,7 +8,7 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook, localizati
 	// Max messages to to keep
 	var max_messages = 3;
 	// SpotShot Facebook page id
-	var spotshotPageId = "190955174445459";
+	var spotshotPageId = "1418855031715838";
 
 	// Constructor for the message object
 	var newMessage = function(fromId, toId, location, content, map, address, picture) {
@@ -30,6 +30,10 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook, localizati
 
 	var getUsers = function() {
 		return users;
+	}
+
+	var getUsersIds = function() {
+		return users.$getIndex();
 	}
 
 	var getUserChats = function(id) {
@@ -157,6 +161,7 @@ function(FIREBASE_URI, NOTIFICATIONS_URI, $firebase, $http, facebook, localizati
 		setupAccount: setupAccount,
 		sendWelcomeMessage: sendWelcomeMessage,
 		getUsers: getUsers,
+		getUsersIds: getUsersIds,
 		getUserChats: getUserChats,
 		cleanChat: cleanChat,
 		addMessage: addMessage,

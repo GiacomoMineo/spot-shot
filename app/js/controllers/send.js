@@ -96,7 +96,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 		}
 	
 		// Variables initialization
-		var tellmewherePageId = "190955174445459";
+		var spotshotPageId = "1418855031715838";
 		$scope.message = "";
 		$scope.addSend = false;
 
@@ -224,9 +224,9 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 							id += group.friends[index].id + ',';
 						}
 						id = id.substring(0, id.length - 1);
-						facebookPost(id, shortUrl, tellmewherePageId, beginningMessage);
+						facebookPost(id, shortUrl, spotshotPageId, beginningMessage);
 					} else {
-						facebookPost($scope.id, shortUrl, tellmewherePageId, beginningMessage);
+						facebookPost($scope.id, shortUrl, spotshotPageId, beginningMessage);
 					}
 			});
 		}
@@ -268,7 +268,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 								// message if there is at least 1 recipient
 								if (index == (group.friends.length - 1) && id.length != 0) {
 									id = id.substring(0, id.length - 1);
-									facebookPost(id, shortUrl, tellmewherePageId, beginningMessage);
+									facebookPost(id, shortUrl, spotshotPageId, beginningMessage);
 								}
 								else {
 									// Firebase button interaction
@@ -283,7 +283,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 							if(result) {
 								firebaseSend($routeParams.id, shortUrl, beginningMessage, true);
 							} else {
-								facebookPost($routeParams.id, shortUrl, tellmewherePageId, beginningMessage);
+								facebookPost($routeParams.id, shortUrl, spotshotPageId, beginningMessage);
 							}
 						});
 					}
@@ -309,7 +309,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 		}
 
 		// Facebook post
-		function facebookPost(id, shortUrl, tellmewherePageId, beginningMessage) {
+		function facebookPost(id, shortUrl, spotshotPageId, beginningMessage) {
 			// Set the privacy according to the switch on the page
 			var privacy = {
 			  "value": "CUSTOM",
@@ -332,7 +332,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 						"message": beginningMessage + $scope.placeName + ' - ' + $scope.location.address +
 								   	   " \n " + $scope.message +
 								   		 " \n\n " + $scope.locale.MapMessage + ": " + shortUrl,
-				    "place": tellmewherePageId,
+				    "place": spotshotPageId,
 				    "tags": id,
 				    "privacy": privacy
 					},
@@ -354,7 +354,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 						"link": $scope.picture,
 						"name": "Foto",
 						"picture": $scope.picture,
-	          "place": tellmewherePageId,
+	          "place": spotshotPageId,
 	          "tags": id,
 	          "privacy": privacy
 					},
@@ -500,7 +500,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 
 			uploadRoutineStart();
 
-			// Check if the Tell Me Where album already exists
+			// Check if the SpotShot album already exists
 			FB.api(
 				"me/albums",
 				"GET",
@@ -514,7 +514,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 						var found = false;
 						var id = 0;
 						for (var i = 0; i < response.data.length && !found; i++) {
-							if (response.data[i].name == "Tell Me Where") {
+							if (response.data[i].name == "SpotShot") {
 								found = true;
 								id = response.data[i].id;
 							}
@@ -529,7 +529,7 @@ app.controller('SendCtrl', ['$scope', '$routeParams', '$window', '$timeout', 'go
 								"me/albums",
 								"POST",
 								{
-									"name": "Tell Me Where",
+									"name": "SpotShot",
 									"message": "",
 									"privacy": privacy
 								},

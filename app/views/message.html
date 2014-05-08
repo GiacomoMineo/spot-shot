@@ -16,7 +16,7 @@
 					<a class="send" href="#/menu/{{id}},{{chat.user.name}},false"></a>
 				</div>
 			</div><ul ng-click="toggleChat(id, true)" class="messages">
-				<li ng-repeat="(msg_id, message) in chat.messages | orderDate:true">
+				<li ng-repeat="message in chat.messages | orderDate:true">
 					<div class="preview">
 						<p>{{message.body.location}} {{message.body.address}}</p>
 						<span class="time">{{message.body.time}}</span>
@@ -25,7 +25,7 @@
 						<p>{{message.body.content}}</p>
 						<div ng-click="togglePicture($event)" class="img-overlay"><img ng-src="{{message.body.picture}}"></div>
 						<a href="{{message.body.map}}">{{message.body.map}}</a>
-						<span class="remove" ng-click="removeMessage(id, msg_id)"></span>
+						<span class="remove" ng-click="removeMessage(id, message.key)"></span>
 					</div>
 				</li>
 			</ul>

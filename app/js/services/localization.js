@@ -21,8 +21,9 @@ app.service('localization', ['$http',
 					lang = navigator.systemLanguage;
 				} else if (navigator.userLanguage) {
 					lang = navigator.userLanguage;
-				} else {
-					lang = 'en/en';
+				}
+				if(!(lang == 'en/en' || lang == 'it')) {
+					lang = 'en';
 				}
 				lang = lang.substr(0, 2);
 			}
